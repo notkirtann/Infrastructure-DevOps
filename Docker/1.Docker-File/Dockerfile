@@ -1,12 +1,10 @@
 FROM node:22.22.0-alpine3.23
 
-WORKDIR /home/app-1
+WORKDIR /home/app-1/src
 
-# copying source code file to docker img
-COPY index.ts /home/app-1/index.ts
-COPY package.json /home/app-1/package.json
-COPY package-lock.json /home/app-1/package-lock.json
-# installing dependencies
+COPY package*.json . 
 RUN npm install
-# cmd to run app when container starts
-# CMD ["node", "index.ts"]
+
+COPY index.ts index.ts
+
+CMD ["node", "index.ts"]
